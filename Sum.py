@@ -1,3 +1,4 @@
+# Операция суммирования матриц
 def Sum(first_matrix, second_matrix):
     if len(second_matrix[0]) > 1:
         for string in second_matrix:

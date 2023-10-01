@@ -9,8 +9,8 @@
 
 # Подключение модулей
 from Sum import Sum
-from Multiplication import Sub
-from Negation import Neg
+from Multiplication import sub_matrix
+from Negation import neg_matrix
 
 #=====================
 
@@ -72,10 +72,10 @@ def InputMatrix(mark):
 
     if mark == 2:
         print("Введите, пожалуйста, размер матрицы в формате m x n (m - количество строк, n - количество столбцов)")
-        m_1 = input("Введите количество строк матрицы:")
-        n_1 = input("Введите количество столбцов матрицы:")
+        list_size.append(input("Введите количество строк матрицы:"))
+        list_size.append(input("Введите количество столбцов матрицы:"))
 
-    list_size.pop(0)
+    # list_size.pop(0)
 
     return list_size
 
@@ -105,7 +105,9 @@ def UserMessage():
             flag_matrix_2 = CheckInputArgumentsMatrix(list_size[2], list_size[3])
 
             if flag_matrix_1 and flag_matrix_2 == 1:
+                print("Начинайте ввод элементов первой матрицы:")
                 matrix_1 = SetMatrix(list_size[0], list_size[1])
+                print("Начинайте ввод элементов второй матрицы:")
                 matrix_2 = SetMatrix(list_size[2], list_size[3])
 
                 print("Ваши исходные матрицы:")
@@ -116,7 +118,10 @@ def UserMessage():
 
                 matrix_ans = Sum(matrix_1, matrix_2)
 
+                print("Ответ:")
+                print("=====================================================")
                 PrintMatrix(matrix_ans)
+                print("=====================================================")
 
             else:
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")
@@ -131,7 +136,9 @@ def UserMessage():
             flag_matrix_2 = CheckInputArgumentsMatrix(list_size[2], list_size[3])
 
             if flag_matrix_1 and flag_matrix_2 == 1:
+                print("Начинайте ввод элементов первой матрицы:")
                 matrix_1 = SetMatrix(list_size[0], list_size[1])
+                print("Начинайте ввод элементов второй матрицы:")
                 matrix_2 = SetMatrix(list_size[2], list_size[3])
 
                 print("Ваши исходные матрицы:")
@@ -140,9 +147,12 @@ def UserMessage():
                 PrintMatrix(matrix_2)
                 print("=====================================================")
 
-                matrix_ans = Sub(matrix_1, matrix_2)
+                matrix_ans = sub_matrix(matrix_1, matrix_2)
 
+                print("Ответ:")
+                print("=====================================================")
                 PrintMatrix(matrix_ans)
+                print("=====================================================")
 
             else:
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")
@@ -156,16 +166,19 @@ def UserMessage():
             flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])
 
             if flag_matrix_1 == 1:
-
+                print("Начинайте ввод элементов матрицы:")
                 matrix_1 = SetMatrix(list_size[0], list_size[1])
 
                 print("Ваша исходная матрица:")
                 PrintMatrix(matrix_1)
                 print("=====================================================")
 
-                matrix_ans = Neg(matrix_1)
+                matrix_ans = neg_matrix(matrix_1)
 
+                print("Ответ:")
+                print("=====================================================")
                 PrintMatrix(matrix_ans)
+                print("=====================================================")
 
             else:
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")

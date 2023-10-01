@@ -1,23 +1,43 @@
-def Neg():
+from Multiplication import sub_matrix
+def negation(line):
+  column = len(line)
 
-    str_line = ['-', 1, 0]
-    column = len(str_line)
-    row = column - str_line.count("-")
-    new_str = str_line.copy().remove("-")
+  if "-" in line:
+    row = column - line.count("-")
+    new_str = line.copy().remove("-")
+  else:
+    row = column
 
-    index = []
-    pos = 0
+  index = []
+  pos = 0
 
-    ans = [([0] * column) for i in range(row)]
+  ans = [(["0"]*column) for i in range(row)]
 
-    for i in range(column):
-        if isinstance(str_line[i], int):
-            index.append((pos, i))
-            pos += 1
+  for i in range(column):
+    if line[i] != "-":
+      index.append((pos, i))
+      pos += 1
 
-    for i in range(row):
-        for j in range(column):
-            if (i, j) in index:
-                ans[i][j] = int(not str_line[j])
-            else:
-                ans[i][j] = '-'
+  for i in range(row):
+    for j in range(column):
+      if (i, j) in index:
+        ans[i][j] = str(int(not int(line[j])))
+      else:
+        ans[i][j] = "-"
+
+  return ans
+
+def neg_matrix(matrix):
+
+  res = negation(matrix[0]) # получили отрицательную строчку
+
+  # идём по остальной матрице
+  for el in range(1, len(matrix)):
+    temp = negation(matrix[el])
+    # если результат умножения Матрица
+    if isinstance(temp[0], list):
+      res = sub_matrix(res, temp)
+    else:
+      res = sub_matrix(temp, res)
+
+  return res
