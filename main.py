@@ -16,26 +16,27 @@ from Negation import neg_matrix
 
 # логика
 
-def CheckInputArgumentsMatrix(m, n):
 
-    if m.isdigit() and n.isdigit():
+def CheckInputArgumentsMatrix(m, n):                            # Функция проверки размерности матриц
+
+    if m.isdigit() and n.isdigit():                             # Проверка, является ли входной параметр числом
 
         if (m != 0) and (n != 0) and (m != 0) and (n != 0):
             pass
         else:
-            return False
+            return False                                        # Если не число, возвращаем False
     else:
-        return False
+        return False                                            # Если не число, возвращаем False
 
-    return True
+    return True                                                 # Если это число, возвращаем True
 
 
-def SetMatrix(m, n):
+def SetMatrix(m, n):                                            # Функция приема значений элементов матриц
 
     matrix_row = []
     matrix = [[]]
 
-    for i in range(int(m)):
+    for i in range(int(m)):                                     # Запуск цикла в цикле приема значений
 
         for j in range(int(n)):
             print("Введите значение элемента матрицы:", i + 1, " строка, ", j + 1, "столбец.")
@@ -44,23 +45,17 @@ def SetMatrix(m, n):
             if choice_element == "1" or choice_element == "0" or choice_element == "-":
                 matrix_row.append(choice_element)
 
-        matrix.append(matrix_row)
+        matrix.append(matrix_row)                               # Добавление элементов в список
         matrix_row = []
 
-    matrix.pop(0)
+    matrix.pop(0)                                               # Удаление пустого элемента
 
     return matrix
 
 
-def PrintMatrix(matrix):
+def InputMatrix(mark):                                          # Функция приема размера матрицы
 
-    for index in matrix:
-        print('(' + ' '.join(index) + ')')
-
-
-def InputMatrix(mark):
-
-    list_size = []
+    list_size = []                                              # В зависимости от операции, принимаем один или два размера
 
     if mark == 1:
         print("Введите, пожалуйста, размер первой исходной матрицы в формате m x n (m - количество строк, n - количество столбцов)")
@@ -75,18 +70,21 @@ def InputMatrix(mark):
         list_size.append(input("Введите количество строк матрицы:"))
         list_size.append(input("Введите количество столбцов матрицы:"))
 
-    # list_size.pop(0)
-
     return list_size
 
-def UserMessage():
+
+def PrintMatrix(matrix):                                        # Функция форматированного вывода матриц
+
+    for index in matrix:
+        print('(' + ' '.join(index) + ')')
+def UserMessage():                                              # Функция для работы с пользователем
 
     choice_user = '0'
 
     print("Здравствуйте! Вас приветствует программа для работы с троичными матрицами.")
     print("Эта программа реализует операции сложения, умножения и отрицания троичных матриц.")
 
-    while(choice_user != 'e'):
+    while(choice_user != 'e'):                                  # Пока пользователь не нажмет клавишу выхода из программы
 
         print("Пожалуйста, выберите операцию, которую вы хотите совершить над матрицами (нажмите клавишу, соответствующую операции):")
         print("1. Сложение")
@@ -95,92 +93,92 @@ def UserMessage():
         print("Вы можете завершить выполнение программы, нажав клавишу 'e'.")
         choice_user = input("Ваш выбор:")
 
-        if (choice_user == '1'):
+        if (choice_user == '1'):                                                    # Если пользователь выбрал операцию сложения
 
             print("Вы выбрали пункт: сложение троичных матриц.")
 
-            list_size = InputMatrix(1)
+            list_size = InputMatrix(1)                                              # Вызов функции приема аргументов
 
-            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])
+            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])   # Проверка введенных значений
             flag_matrix_2 = CheckInputArgumentsMatrix(list_size[2], list_size[3])
 
-            if flag_matrix_1 and flag_matrix_2 == 1:
+            if flag_matrix_1 and flag_matrix_2 == 1:                                # Если проверка пройдена
                 print("Начинайте ввод элементов первой матрицы:")
-                matrix_1 = SetMatrix(list_size[0], list_size[1])
+                matrix_1 = SetMatrix(list_size[0], list_size[1])                    # Вызов функции ввода значений для первой матрицы
                 print("Начинайте ввод элементов второй матрицы:")
-                matrix_2 = SetMatrix(list_size[2], list_size[3])
+                matrix_2 = SetMatrix(list_size[2], list_size[3])                    # Вызов функции ввода значений для второй матрицы
 
-                print("Ваши исходные матрицы:")
+                print("Ваши исходные матрицы:")                                     # Вывод исходных матриц
                 PrintMatrix(matrix_1)
                 print("=====================================================")
                 PrintMatrix(matrix_2)
                 print("=====================================================")
 
-                matrix_ans = Sum(matrix_1, matrix_2)
+                matrix_ans = Sum(matrix_1, matrix_2)                                # Вызов функции для произведения операции
 
                 print("Ответ:")
                 print("=====================================================")
-                PrintMatrix(matrix_ans)
+                PrintMatrix(matrix_ans)                                             # Вывод ответа
                 print("=====================================================")
 
-            else:
+            else:                                                                   # Вывод предупреждения, если что-то пошло не так
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")
 
-        if (choice_user == '2'):
+        if (choice_user == '2'):                                                    # Если пользователь выбрал операцию умножения
 
             print("Вы выбрали пункт: умножение троичных матриц.")
 
-            list_size = InputMatrix(1)
+            list_size = InputMatrix(1)                                              # Вызов функции приема аргументов
 
-            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])
+            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])   # Проверка введенных значений
             flag_matrix_2 = CheckInputArgumentsMatrix(list_size[2], list_size[3])
 
-            if flag_matrix_1 and flag_matrix_2 == 1:
+            if flag_matrix_1 and flag_matrix_2 == 1:                                # Если проверка пройдена
                 print("Начинайте ввод элементов первой матрицы:")
-                matrix_1 = SetMatrix(list_size[0], list_size[1])
+                matrix_1 = SetMatrix(list_size[0], list_size[1])                    # Вызов функции ввода значений для первой матрицы
                 print("Начинайте ввод элементов второй матрицы:")
-                matrix_2 = SetMatrix(list_size[2], list_size[3])
+                matrix_2 = SetMatrix(list_size[2], list_size[3])                    # Вызов функции ввода значений для второй матрицы
 
-                print("Ваши исходные матрицы:")
+                print("Ваши исходные матрицы:")                                     # Вывод исходных матриц
                 PrintMatrix(matrix_1)
                 print("=====================================================")
                 PrintMatrix(matrix_2)
                 print("=====================================================")
 
-                matrix_ans = sub_matrix(matrix_1, matrix_2)
+                matrix_ans = sub_matrix(matrix_1, matrix_2)                         # Вызов функции для произведения операции
 
                 print("Ответ:")
                 print("=====================================================")
-                PrintMatrix(matrix_ans)
+                PrintMatrix(matrix_ans)                                             # Вывод ответа
                 print("=====================================================")
 
-            else:
+            else:                                                                   # Вывод предупреждения, если что-то пошло не так
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")
 
-        if (choice_user == '3'):
+        if (choice_user == '3'):                                                    # Если пользователь выбрал операцию отрицания матрицы
 
             print("Вы выбрали пункт: отрицание троичной матрицы.")
 
-            list_size = InputMatrix(2)
+            list_size = InputMatrix(2)                                              # Вызов функции приема аргументов
 
-            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])
+            flag_matrix_1 = CheckInputArgumentsMatrix(list_size[0], list_size[1])   # Проверка введенных значений
 
-            if flag_matrix_1 == 1:
+            if flag_matrix_1 == 1:                                                  # Если проверка пройдена
                 print("Начинайте ввод элементов матрицы:")
-                matrix_1 = SetMatrix(list_size[0], list_size[1])
+                matrix_1 = SetMatrix(list_size[0], list_size[1])                    # Вызов функции ввода значений для матрицы
 
                 print("Ваша исходная матрица:")
-                PrintMatrix(matrix_1)
+                PrintMatrix(matrix_1)                                               # Вывод матрицы
                 print("=====================================================")
 
-                matrix_ans = neg_matrix(matrix_1)
+                matrix_ans = neg_matrix(matrix_1)                                    # Вызов функции для произведения операции
 
                 print("Ответ:")
                 print("=====================================================")
-                PrintMatrix(matrix_ans)
+                PrintMatrix(matrix_ans)                                              # Вывод ответа
                 print("=====================================================")
 
-            else:
+            else:                                                                    # Сообщение в случае неправильного ввода размерности матриц
                 print("Вы неправильно ввели размерность матриц. Попробуйте еще раз!")
 
     print("Работа программы закончена, до свидания!")

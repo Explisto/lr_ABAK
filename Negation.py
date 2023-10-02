@@ -1,5 +1,5 @@
 from Multiplication import sub_matrix
-def negation(line):
+def negation(line):                             # Вспомогательная функция для отрицания троичной матрицы
   column = len(line)
 
   if "-" in line:
@@ -27,7 +27,7 @@ def negation(line):
 
   return ans
 
-def neg_matrix(matrix):
+def neg_matrix(matrix):                 # Определение функции для отрицания троичной матрицы
 
   res = negation(matrix[0]) # получили отрицательную строчку
 

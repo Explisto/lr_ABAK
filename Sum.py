@@ -1,5 +1,5 @@
 # Операция суммирования матриц
-def Sum(first_matrix, second_matrix):
+def Sum(first_matrix, second_matrix):                               # Определение функции для суммирования троичных матриц
     if len(second_matrix[0]) > 1:
         for string in second_matrix:
             first_matrix.append(string)

@@ -1,5 +1,4 @@
-
-def sub(s1, s2):
+def sub(s1, s2):                                              # Вспомогательная функция для произведения троичных матриц
   answer = []
 
   for sign in range(len(s1)):
@@ -18,7 +17,7 @@ def sub(s1, s2):
 
 
 
-def sub_matrix(m1, m2):
+def sub_matrix(m1, m2):                                       # Определение функции для произведения троичных матриц
 
   out = list()  # результат
 
